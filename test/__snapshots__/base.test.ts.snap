@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createPrefixLog test base test 1`] = `
+[
+  "%cObject.createPrefixLogBaseTest::",
+  "color: #14deab; font-weight: bold",
+  " ttt",
+]
+`;
+
+exports[`createPrefixLog test object params test 1`] = `
+[
+  "%cObject.createPrefixLogBaseTest::",
+  "color: #14deab; font-weight: bold",
+  "",
+  {
+    "a": "test",
+  },
+]
+`;
+
+exports[`overWriteLog test base test 1`] = `
+[
+  "%cObject.overWriteLogTest::",
+  "color: #d514b7; font-weight: bold",
+  " test",
+]
+`;
+
+exports[`patchLog test base test 1`] = `
+[
+  "%cObject.patchLogTest::",
+  "color: #aebd14; font-weight: bold",
+  " test",
+]
+`;
