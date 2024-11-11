@@ -3,7 +3,7 @@
 exports[`createPrefixLog test base test 1`] = `
 [
   "%cObject.createPrefixLogBaseTest::",
-  "color: #14b7b7; font-weight: bold",
+  "color: #146cb7; font-weight: bold",
   " ttt",
 ]
 `;
@@ -11,7 +11,7 @@ exports[`createPrefixLog test base test 1`] = `
 exports[`createPrefixLog test object params test 1`] = `
 [
   "%cObject.createPrefixLogBaseTest::",
-  "color: #14b7b7; font-weight: bold",
+  "color: #146cb7; font-weight: bold",
   "",
   {
     "a": "test",
@@ -22,7 +22,7 @@ exports[`createPrefixLog test object params test 1`] = `
 exports[`overWriteLog test base test 1`] = `
 [
   "%cObject.overWriteLogTest::",
-  "color: #14b7b7; font-weight: bold",
+  "color: #d51412; font-weight: bold",
   " test",
 ]
 `;
@@ -30,7 +30,7 @@ exports[`overWriteLog test base test 1`] = `
 exports[`patchLog test base test 1`] = `
 [
   "%cObject.patchLogTest::",
-  "color: #e1b114; font-weight: bold",
+  "color: #14bd84; font-weight: bold",
   " test",
 ]
 `;
