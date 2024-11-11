@@ -11,5 +11,3 @@ export declare const createPrefixLogAnsi: (spliter?: string, log?: {
     (message?: any, ...optionalParams: any[]): void;
 }) => (message?: any, ...optionalParams: any[]) => void;
 export declare const overWriteLog: () => void;
-export declare const prefixLog: (message?: any, ...optionalParams: any[]) => void;
-export declare const patchLog: (key?: string) => string;

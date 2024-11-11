@@ -12,13 +12,15 @@ const createPrefixLog = (spliter = '::', log = console.log.bind(console)) => {
         catch (e) {
             const stack = ((_a = e.stack) === null || _a === void 0 ? void 0 : _a.split('\n')[2]) || '';
             const callInfo = ((_b = stack.match(/at(.*)\((.*)\)/)) === null || _b === void 0 ? void 0 : _b.map(str => str.trim())) || [];
-            const [, handler = ''] = callInfo;
-            const prefixPatch = handler ? `${handler}${spliter}` : '';
-            if (typeof args[0] !== 'string' && handler) {
+            const [, handler = '', path = ''] = callInfo;
+            const fileName = path.split('/').pop();
+            const logPrefix = handler || fileName || 'anonymous';
+            const prefixPatch = `${logPrefix}${spliter}`;
+            if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
                 args.unshift(prefixPatch);
             }
-            let prefix = args[0] || '';
-            prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`;
+            let prefix = args[0];
+            prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`;
             const prefixList = prefix.split(spliter);
             prefix = prefixList.shift();
             let color = cache[prefix];
@@ -48,13 +50,15 @@ const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(console)) =>
         catch (e) {
             const stack = ((_a = e.stack) === null || _a === void 0 ? void 0 : _a.split('\n')[2]) || '';
             const callInfo = ((_b = stack.match(/at(.*)\((.*)\)/)) === null || _b === void 0 ? void 0 : _b.map(str => str.trim())) || [];
-            const [, handler = ''] = callInfo;
-            const prefixPatch = handler ? `${handler}${spliter}` : '';
-            if (typeof args[0] !== 'string' && handler) {
+            const [, handler = '', path = ''] = callInfo;
+            const fileName = path.split('/').pop();
+            const logPrefix = handler || fileName || 'anonymous';
+            const prefixPatch = `${logPrefix}${spliter}`;
+            if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
                 args.unshift(prefixPatch);
             }
-            let prefix = args[0] || '';
-            prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`;
+            let prefix = args[0];
+            prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`;
             const prefixList = prefix.split(spliter);
             prefix = prefixList.shift();
             let color = cache[prefix];
@@ -74,15 +78,8 @@ const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(console)) =>
 const overWriteLog = () => {
     console.log = createPrefixLog();
 };
-const prefixLog = createPrefixLog();
-const patchLog = (key = '$prefixLog$') => {
-    globalThis[key] = createPrefixLog();
-    return key;
-};
 
 exports._log = _log;
 exports.createPrefixLog = createPrefixLog;
 exports.createPrefixLogAnsi = createPrefixLogAnsi;
 exports.overWriteLog = overWriteLog;
-exports.patchLog = patchLog;
-exports.prefixLog = prefixLog;

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.71% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>67/70</span>
+                <span class='fraction'>68/69</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.09% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>38/55</span>
+                <span class='fraction'>30/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.81% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/11</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.08% </span>
+                <span class="strong">98.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/61</span>
+                <span class='fraction'>60/61</span>
             </div>
         
             
@@ -144,21 +144,19 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -200,6 +198,8 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -225,17 +225,9 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const _log = console.log.bind(console)
 &nbsp;
-export const createPrefixLog = (spliter = '::', log = console.log.bind(console)) =&gt; {
+export const createPrefixLog = (spliter = <span class="branch-0 cbranch-no" title="branch not covered" >'::',</span> log = <span class="branch-0 cbranch-no" title="branch not covered" >console.log.bind(console))</span> =&gt; {
   const cache: Record&lt;string, string&gt; = {}
   const randomNum = (str: string) =&gt; (Math.abs((str.charCodeAt(Math.floor(Math.random() * str.length)) - 40)) % 255) * 3
   return (...args: Parameters&lt;typeof log&gt;) =&gt; {
@@ -244,13 +236,15 @@ export const createPrefixLog = (spliter = '::', log = console.log.bind(console))
     } catch(e) {
       const stack = (e as Error).stack<span class="branch-0 cbranch-no" title="branch not covered" >?.s</span>plit('\n')[2] || <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
       const callInfo = stack.match(/at(.*)\((.*)\)/)<span class="branch-0 cbranch-no" title="branch not covered" >?.m</span>ap(str =&gt; str.trim()) || <span class="branch-1 cbranch-no" title="branch not covered" >[]</span>
-      const [, handler = <span class="branch-0 cbranch-no" title="branch not covered" >'']</span> = callInfo
-      const prefixPatch = handler ? `${handler}${spliter}` : <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
-      if (typeof args[0] !== 'string' &amp;&amp; handler) {
+      const [, handler = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> path = <span class="branch-0 cbranch-no" title="branch not covered" >'']</span> = callInfo
+      const fileName = path.split('/').pop()
+      const logPrefix = handler || <span class="branch-1 cbranch-no" title="branch not covered" >fileName </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >'anonymous'</span>
+      const prefixPatch = `${logPrefix}${spliter}`
+      if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0] || <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
-      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0]
+      prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`
 &nbsp;
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
@@ -282,13 +276,15 @@ export const createPrefixLogAnsi = (spliter = <span class="branch-0 cbranch-no" 
     } catch(e) {
       const stack = (e as Error).stack<span class="branch-0 cbranch-no" title="branch not covered" >?.s</span>plit('\n')[2] || <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
       const callInfo = stack.match(/at(.*)\((.*)\)/)<span class="branch-0 cbranch-no" title="branch not covered" >?.m</span>ap(str =&gt; str.trim()) || <span class="branch-1 cbranch-no" title="branch not covered" >[]</span>
-      const [, handler = <span class="branch-0 cbranch-no" title="branch not covered" >'']</span> = callInfo
-      const prefixPatch = handler ? `${handler}${spliter}` : <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
-      if (typeof args[0] !== 'string' &amp;&amp; handler) {
+      const [, handler = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> path = <span class="branch-0 cbranch-no" title="branch not covered" >'']</span> = callInfo
+      const fileName = path.split('/').pop()
+      const logPrefix = handler || <span class="branch-1 cbranch-no" title="branch not covered" >fileName </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >'anonymous'</span>
+      const prefixPatch = `${logPrefix}${spliter}`
+      if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0] || <span class="branch-1 cbranch-no" title="branch not covered" >''</span>
-      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0]
+      prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`
 &nbsp;
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
@@ -310,22 +306,14 @@ export const createPrefixLogAnsi = (spliter = <span class="branch-0 cbranch-no" 
 export const overWriteLog = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
 <span class="cstat-no" title="statement not covered" >  console.log = createPrefixLog()</span>
 }
-&nbsp;
-export const prefixLog = createPrefixLog()
-&nbsp;
-export const patchLog = <span class="fstat-no" title="function not covered" >(k</span>ey = <span class="branch-0 cbranch-no" title="branch not covered" >'$prefixLog$')</span> =&gt; {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-<span class="cstat-no" title="statement not covered" >  globalThis[key] = createPrefixLog()</span>
-<span class="cstat-no" title="statement not covered" >  return key</span>
-}</pre></td></tr></table></pre>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-11T02:05:13.688Z
+                at 2024-11-11T02:15:44.058Z
             </div>
         <script src="prettify.js"></script>
         <script>

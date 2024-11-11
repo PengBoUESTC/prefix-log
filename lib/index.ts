@@ -9,13 +9,15 @@ export const createPrefixLog = (spliter = '::', log = console.log.bind(console))
     } catch(e) {
       const stack = (e as Error).stack?.split('\n')[2] || ''
       const callInfo = stack.match(/at(.*)\((.*)\)/)?.map(str => str.trim()) || []
-      const [, handler = ''] = callInfo
-      const prefixPatch = handler ? `${handler}${spliter}` : ''
-      if (typeof args[0] !== 'string' && handler) {
+      const [, handler = '', path = ''] = callInfo
+      const fileName = path.split('/').pop()
+      const logPrefix = handler || fileName || 'anonymous'
+      const prefixPatch = `${logPrefix}${spliter}`
+      if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0] || ''
-      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0]
+      prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`
 
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
@@ -47,13 +49,15 @@ export const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(conso
     } catch(e) {
       const stack = (e as Error).stack?.split('\n')[2] || ''
       const callInfo = stack.match(/at(.*)\((.*)\)/)?.map(str => str.trim()) || []
-      const [, handler = ''] = callInfo
-      const prefixPatch = handler ? `${handler}${spliter}` : ''
-      if (typeof args[0] !== 'string' && handler) {
+      const [, handler = '', path = ''] = callInfo
+      const fileName = path.split('/').pop()
+      const logPrefix = handler || fileName || 'anonymous'
+      const prefixPatch = `${logPrefix}${spliter}`
+      if (typeof args[0] !== 'string' || typeof args[0] === undefined) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0] || ''
-      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0]
+      prefix = prefix.startsWith(logPrefix) ? prefix : `${prefixPatch} ${prefix}`
 
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
@@ -74,13 +78,4 @@ export const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(conso
 
 export const overWriteLog = () => {
   console.log = createPrefixLog()
-}
-
-export const prefixLog = createPrefixLog()
-
-export const patchLog = (key = '$prefixLog$') => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  globalThis[key] = createPrefixLog()
-  return key
 }
