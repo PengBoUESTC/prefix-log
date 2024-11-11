@@ -2,13 +2,13 @@
 
 exports[`createPrefixLogAnsi test base test 1`] = `
 [
-  "[48;2;222;213;200mObject.createPrefixLogBaseTest[0m:: ttt",
+  "[48;2;200;222;240mObject.createPrefixLogBaseTest[0m:: ttt",
 ]
 `;
 
 exports[`createPrefixLogAnsi test object params test 1`] = `
 [
-  "[48;2;222;213;200mObject.createPrefixLogBaseTest[0m::",
+  "[48;2;200;222;240mObject.createPrefixLogBaseTest[0m::",
   {
     "a": "test",
   },
@@ -17,12 +17,12 @@ exports[`createPrefixLogAnsi test object params test 1`] = `
 
 exports[`overWriteLog test base test 1`] = `
 [
-  "[48;2;18;141;200mObject.overWriteLogTest[0m:: test",
+  "[48;2;200;132;228mObject.overWriteLogTest[0m:: test",
 ]
 `;
 
 exports[`patchLog test base test 1`] = `
 [
-  "[48;2;108;200;216mObject.patchLogTest[0m:: test",
+  "[48;2;192;18;200mObject.patchLogTest[0m:: test",
 ]
 `;
