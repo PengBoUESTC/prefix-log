@@ -14,8 +14,8 @@ export const createPrefixLog = (spliter = '::', log = console.log.bind(console))
       if (typeof args[0] !== 'string' && handler) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0]
-      prefix = prefix.startsWith(prefixPatch) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0] || ''
+      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
 
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
@@ -52,8 +52,8 @@ export const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(conso
       if (typeof args[0] !== 'string' && handler) {
         args.unshift(prefixPatch)
       }
-      let prefix = args[0]
-      prefix = prefix.startsWith(prefixPatch) ? prefix : `${prefixPatch} ${prefix}`
+      let prefix = args[0] || ''
+      prefix = (!handler || prefix.startsWith(prefixPatch)) ? prefix : `${prefixPatch} ${prefix}`
 
       const prefixList = prefix.split(spliter)
       prefix = prefixList.shift()
