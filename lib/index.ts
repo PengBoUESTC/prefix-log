@@ -1,7 +1,7 @@
-const cache: Record<string, string> = {}
 export const _log = console.log.bind(console)
 
 export const createPrefixLog = (spliter = '::', log = console.log.bind(console)) => {
+  const cache: Record<string, string> = {}
   const randomNum = (str: string) => (Math.abs((str.charCodeAt(Math.floor(Math.random() * str.length)) - 40)) % 255) * 3
   return (...args: Parameters<typeof log>) => {
     try {
@@ -37,6 +37,7 @@ export const createPrefixLog = (spliter = '::', log = console.log.bind(console))
 }
 
 export const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(console)) => {
+  const cache: Record<string, string> = {}
   const formatter = (open: string, str: string, close: string) => `${open}${str}${close}`
   const randomNum = (str: string) => (Math.abs((str.charCodeAt(Math.floor(Math.random() * str.length)) - 40)) % 255) * 3
 

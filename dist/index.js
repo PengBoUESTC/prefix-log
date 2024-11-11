@@ -1,8 +1,8 @@
 'use strict';
 
-const cache = {};
 const _log = console.log.bind(console);
 const createPrefixLog = (spliter = '::', log = console.log.bind(console)) => {
+    const cache = {};
     const randomNum = (str) => (Math.abs((str.charCodeAt(Math.floor(Math.random() * str.length)) - 40)) % 255) * 3;
     return (...args) => {
         var _a, _b;
@@ -37,6 +37,7 @@ const createPrefixLog = (spliter = '::', log = console.log.bind(console)) => {
     };
 };
 const createPrefixLogAnsi = (spliter = '::', log = console.log.bind(console)) => {
+    const cache = {};
     const formatter = (open, str, close) => `${open}${str}${close}`;
     const randomNum = (str) => (Math.abs((str.charCodeAt(Math.floor(Math.random() * str.length)) - 40)) % 255) * 3;
     return (...args) => {
